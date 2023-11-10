@@ -10,7 +10,7 @@ class FormGenerator
     public function addItem($item, $attributes, $name='',  $innerItem = ''): string {
         $result = '';
 
-        if (!isset($attributes) || empty($attributes)) {
+        if (empty($attributes)) {
             throw new \Exception("Не переданы атрибуты элемента формы");
         }
         if (!is_array($attributes)) {
@@ -20,8 +20,8 @@ class FormGenerator
         try {
             if (in_array($item, self::ITEMS)) {
                 $item = self::NAMESPACE . ucfirst($item);
-                $objItem = new $item();
-                $result = $objItem->render($name, $attributes, $innerItem);
+                $objItem = new $item($name, $attributes, $innerItem);
+                $result = $objItem->render();
             }
         } catch (\Exception $e) {
             echo 'Error: ', $e->getMessage(), "\n";
@@ -31,10 +31,7 @@ class FormGenerator
 
     public function generateForm(string $method, string $action, string $name, string $class, array $items): string {
 
-        $content = '';
-        foreach ($items as $item) {
-            $content .= $item;
-        }
+        $content = implode(' ', $items);
 
         $form = '<div class="formWrapper">';
         $form .= $this->addItem(

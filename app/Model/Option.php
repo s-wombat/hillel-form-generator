@@ -4,9 +4,10 @@ namespace App\Model;
 
 class Option extends Forms
 {
-    public function render(string $name, array $attributes, string $innerItem): string {
 
-        $attr = parent::attributesToString($attributes);
-        return '<option ' . $attr .'/>' . $name . '</option>';
+    public function render(): string {
+
+        $attr = parent::attributesToString();
+        return '<option ' . $attr .'/>' . $this->name . '</option>';
     }
 }

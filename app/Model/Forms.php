@@ -6,10 +6,17 @@ use App\Interface\FormsInterface;
 
 abstract class Forms implements FormsInterface
 {
-    abstract public function render(string $name, array $attributes, string $innerItem): string;
-    public function attributesToString(array $attributes): string {
+    public function __construct(
+        public string $name,
+        public array $attributes,
+        public string $innerItem
+    )
+    {}
+
+    abstract public function render(): string;
+    public function attributesToString(): string {
         $attr = '';
-        foreach ($attributes as $key => $val) {
+        foreach ($this->attributes as $key => $val) {
             $attr .= $key . '="' . $val . '" ';
         }
         return $attr;

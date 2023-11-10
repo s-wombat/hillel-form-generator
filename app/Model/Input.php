@@ -4,9 +4,10 @@ namespace App\Model;
 
 class Input extends Forms
 {
-    public function render(string $name, array $attributes, string $innerItem): string {
 
-        $attr = parent::attributesToString($attributes);
+    public function render(): string {
+
+        $attr = parent::attributesToString();
         return '<input ' . $attr .'/>';
     }
 

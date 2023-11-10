@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+.mySubmit {
+    margin-top: 5px;
+}
+.myButton {
+    margin-top: 5px;
+}
